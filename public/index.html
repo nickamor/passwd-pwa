@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<title>Password Generator</title>
+
+<style type="text/css">
+html, body {
+	height: 100%;
+	background-color: #455a64;
+	color: #ffffff;
+}
+
+body {
+	text-align: center;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+button {
+	color: #000000;
+}
+
+label {
+	text-align: right;
+}
+</style>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<!-- TODO: Tidy divs -->
+	<!-- TODO: Sliders for numbers -->
+	<div class="cover-container col-md-12">
+		<div class="inner cover">
+			<div class="form-group row">
+				<div class="col-xs-12 col-md-4">
+					<input id="passwdField" class="form-control input-lg" type="text"
+					name="passwdField" placeholder="Password">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-xs-12 col-md-4">
+					<input id="passwdButton" class="btn btn-default btn-primary" type="submit"
+					name="passwdButton" value="Generate">
+					<button class="btn" type="button" data-toggle="collapse" data-target="#collapseOptions" aria-expanded="false" aria-controls="collapseOptions">
+					  More options
+					</button>
+				</div>
+			</div>
+			<div class="collapse" id="collapseOptions">
+				<div class="form-group row">
+					<label for="length" class="col-xs-6 col-md-2">Characters</label>
+					<div class="col-xs-6 col-md-2">
+						<input type="text" class="form-control" name="length" id="length" value="12">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="nUpper" class="col-xs-6 col-md-2">Uppercase characters</label>
+					<div class="col-xs-6 col-md-2">
+						<input type="text" class="form-control" name="nUpper" id="nUpper" value="1">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="nNumeric" class="col-xs-6 col-md-2">Numeric characters</label>
+					<div class="col-xs-6 col-md-2">
+						<input type="text" class="form-control" name="nNumeric" id="nNumeric" value="1">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="nSpecial" class="col-xs-6 col-md-2">Special characters</label>
+					<div class="col-xs-6 col-md-2">
+						<input type="text" class="form-control" name="nSpecial" id="nSpecial" value="0">
+						<input type="text" class="form-control" name="specialCharset" id="specialCharset" value="!@#$%^*()-_=+">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	// TODO: Reimplement shuffle()
+	// TODO: Test input values isNumber etc.
+
+	String.prototype.shuffle = function() {
+		var a = this.split(""), n = a.length;
+		for (var i = n - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));
+			var tmp = a[i];
+			a[i] = a[j];
+			a[j] = tmp;
+		}
+		return a.join("");
+	}
+
+	function buildCharset(n, src) {
+		var retVal = "";
+
+		for (var i = 0; i < n; ++i) {
+			retVal += src.charAt(Math.floor(Math.random() * src.length));
+		}
+
+		return retVal;
+	}
+
+	function generatePassword(length, nUpper, nNumeric, nSpecial, specialCharset) {
+		var charset = "abcdefghijklnopqrstuvwxyz", upperCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", numCharset = "0123456789", passwdCharset = "";
+
+		var nAlpha = length - nUpper - nNumeric - nSpecial;
+
+		passwdCharset += buildCharset(nAlpha, charset);
+		passwdCharset += buildCharset(nUpper, upperCharset);
+		passwdCharset += buildCharset(nNumeric, numCharset);
+		passwdCharset += buildCharset(nSpecial, specialCharset);
+
+		return passwdCharset.shuffle();
+	}
+
+	$(document).ready(function() {
+		$("#passwdButton").click(function() {
+			var length = $("#length").val();
+			var nUpper = $("#nUpper").val();
+			var nNumeric = $("#nNumeric").val();
+			var nSpecial = $("#nSpecial").val();
+			var specialCharset = $("#specialCharset").val();
+
+			$("#passwdField").val(generatePassword(length, nUpper, nNumeric, nSpecial, specialCharset)).select();
+		});
+	});
+	</script>
+</body>
+</html>
