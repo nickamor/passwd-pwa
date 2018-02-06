@@ -1,22 +1,45 @@
-
 html,
 body {
-    height: 100%;
-    background-color: #455a64;
+    background-color: #252831;
     color: #ffffff;
 }
 
 body {
-    text-align: center;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-top: 2rem;
 }
 
-button {
-    color: #000000;
+@media only screen and (min-width: 600px) {
+    body {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-label {
-    text-align: right;
+/** Password font **/
+
+.form-passwd {
+    font-family: 'Source Code Pro', Monaco, Consolas, Menlo, 'Droid Sans Mono', monospace;
+}
+
+/** Conjoined Special character input **/
+
+.passwd-special-group textarea {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-width: 0;
+}
+
+.passwd-special-group .input-group-text {
+    border-bottom-left-radius: 0;
+}
+
+.passwd-special-group input {
+    border-bottom-right-radius: 0;
+}
+
+/** Equal width input labels **/
+
+.input-group-text {
+    min-width: 8em;
 }

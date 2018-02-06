@@ -14,54 +14,76 @@
 </head>
 
 <body data-ng-app="passwd" data-ng-controller="PasswordController as vm">
-  <div class="cover-container col-md-12">
-    <div class="inner cover">
-      <div class="form-group row">
-        <div class="col-xs-12 col-md-4">
-          <input id="passwdField" class="form-control input-lg" type="text" name="passwdField" data-ng-model="vm.passwdField" placeholder="Password"
-            data-passwd-select="vm.selectPasswd">
+  <main class="container">
+
+    <!-- Password field -->
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <input id="passwdField" class="form-control form-control-lg form-passwd" type="text" name="passwdField" data-ng-model="vm.passwdField"
+            placeholder="Password" aria-label="Password" data-passwd-select="vm.selectPasswd">
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-xs-12 col-md-4">
-          <button class="btn btn-default btn-primary" type="button" name="passwdButton" ng-click="vm.generate()">
+    </div>
+
+    <!-- Controls -->
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <button class="btn btn-default btn-outline-primary btn-lg" type="button" name="passwdButton" data-ng-click="vm.generate()">
             Generate
           </button>
-          <button class="btn" type="button" ng-click="vm.showOptions = !vm.showOptions" aria-expanded="false" aria-controls="collapseOptions">
+          <button class="btn btn-outline-light btn-lg" type="button" data-ng-click="vm.showOptions = !vm.showOptions" aria-expanded="false"
+            aria-controls="collapseOptions">
             More options
           </button>
         </div>
       </div>
-      <!-- More options -->
-      <div ng-show="vm.showOptions">
-        <div class="form-group row">
-          <label for="length" class="col-xs-6 col-md-2">Characters</label>
-          <div class="col-xs-6 col-md-2">
-            <input type="text" class="form-control" name="length" data-ng-model="vm.options.passwdLength">
+    </div>
+
+    <!-- More options -->
+    <div class="row" data-ng-show="vm.showOptions">
+      <div class="col">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="passwdLength">Characters</label>
+            </div>
+            <input type="text" class="form-control" name="passwdLength" data-ng-model="vm.options.passwdLength">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="nUpper" class="col-xs-6 col-md-2">Uppercase characters</label>
-          <div class="col-xs-6 col-md-2">
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label for="nUpper" class="input-group-text">Uppercase</label>
+            </div>
             <input type="text" class="form-control" name="nUpper" data-ng-model="vm.options.nUpper">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="nNumeric" class="col-xs-6 col-md-2">Numeric characters</label>
-          <div class="col-xs-6 col-md-2">
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label for="nNumeric" class="input-group-text">Numeric</label>
+            </div>
             <input type="text" class="form-control" name="nNumeric" data-ng-model="vm.options.nNumeric">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="nSpecial" class="col-xs-6 col-md-2">Special characters</label>
-          <div class="col-xs-6 col-md-2">
-            <input type="text" class="form-control" name="nSpecial" data-ng-model="vm.options.nSpecial">
-            <input type="text" class="form-control" name="specialCharset" data-ng-model="vm.options.specialCharset">
+
+        <div class="form-group passwd-special-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text">Special</label>
+            </div>
+            <input type="text" class="form-control" data-ng-model="vm.options.nSpecial">
           </div>
+          <textarea type="text" class="form-control" data-ng-model="vm.options.specialCharset"></textarea>
         </div>
       </div>
     </div>
-  </div>
+
+  </main>
 </body>
 
 </html>
