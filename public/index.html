@@ -6,10 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width">
   <title>Password Generator</title>
-  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css">
   <link rel="stylesheet" href="app/app.css"></link>
-  <script type="text/javascript" src="jquery.min.js"></script>
-  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/angular.min.js"></script>
+  <script type="text/javascript" src="vendor/angular-animate.min.js"></script>
   <script type="text/javascript" src="app/app.js"></script>
 </head>
 
@@ -42,7 +43,7 @@
     </div>
 
     <!-- More options -->
-    <div class="row" data-ng-show="vm.showOptions">
+    <div class="row passwd-options-container" data-ng-show="vm.showOptions">
       <div class="col">
         <div class="form-group">
           <div class="input-group">

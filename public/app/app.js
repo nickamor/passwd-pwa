@@ -1,9 +1,9 @@
-(function() {
+(function () {
   "use strict";
 
   /* global angular */
 
-  String.prototype.shuffle = function() {
+  String.prototype.shuffle = function () {
     var a = this.split(""),
       n = a.length;
     for (var i = n - 1; i > 0; i--) {
@@ -66,7 +66,7 @@
 
     vm.options = angular.copy(PasswordService.defaults);
 
-    vm.generate = function() {
+    vm.generate = function () {
       vm.passwdField = PasswordService.generatePassword(vm.options);
       vm.selectPasswd = true;
     };
@@ -76,7 +76,7 @@
 
   function passwdSelect() {
     function link($scope, $elem) {
-      $scope.$watch("trigger", function(newValue) {
+      $scope.$watch("trigger", function (newValue) {
         if (typeof newValue === "boolean" && newValue) {
           $elem[0].select();
           $scope.trigger = false;
@@ -87,12 +87,14 @@
     return {
       link: link,
       restrict: "A",
-      scope: { trigger: "=passwdSelect" }
+      scope: {
+        trigger: "=passwdSelect"
+      }
     };
   }
 
   angular
-    .module("passwd", [])
+    .module("passwd", ["ngAnimate"])
     .factory("PasswordService", PasswordService)
     .controller("PasswordController", PasswordController)
     .directive("passwdSelect", passwdSelect);

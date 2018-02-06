@@ -43,3 +43,14 @@ body {
 .input-group-text {
     min-width: 8em;
 }
+
+/** Animations **/
+
+.passwd-options-container {
+    transition: all linear 0.2s;
+}
+
+.passwd-options-container.ng-hide {
+    opacity: 0;
+    transform: translateY(-1em);
+}
