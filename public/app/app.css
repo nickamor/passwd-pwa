@@ -1,0 +1,22 @@
+
+html,
+body {
+    height: 100%;
+    background-color: #455a64;
+    color: #ffffff;
+}
+
+body {
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+button {
+    color: #000000;
+}
+
+label {
+    text-align: right;
+}
