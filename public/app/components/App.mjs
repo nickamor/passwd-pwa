@@ -41,7 +41,7 @@ const App = () => {
   return html`<main class="container">
     <${PasswordInput} passwdField=${state.password} inputRef=${inputRef} />
     <${PasswordControls}
-      showOptions=${state.options.showOptions}
+      showOptions=${state.showOptions}
       onGenerate=${() => {
         dispatch(generate());
       }}

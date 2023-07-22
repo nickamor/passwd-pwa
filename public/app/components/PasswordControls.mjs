@@ -9,7 +9,7 @@ const PasswordControls = ({
   showOptions,
   onGenerate,
   onMoreOptions,
-}) => html` <div class="row">
+}) => html`<div class="row">
   <div class="col">
     <div class="form-group">
       <button
@@ -22,11 +22,10 @@ const PasswordControls = ({
       </button>
       ${nbsp}
       <button
-        class="btn btn-outline-light btn-lg"
-        ng-class="${showOptions ? "active" : null}"
+        class="btn btn-outline-light btn-lg ${showOptions ? "active" : ""}"
         type="button"
         onClick=${() => onMoreOptions()}
-        aria-expanded="false"
+        aria-expanded=${showOptions}
         aria-controls="collapseOptions"
       >
         More options
