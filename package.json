@@ -1,0 +1,19 @@
+{
+  "name": "passwd-pwa",
+  "version": "1.0.0",
+  "description": "A web-based password manager.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run vendor_htm && npm run vendor_preact && npm run vendor_preact_hooks",
+    "vendor_htm": "cp node_modules/htm/dist/htm.mjs public/vendor/htm.mjs",
+    "vendor_preact": "cp node_modules/preact/dist/preact.mjs public/vendor/preact.mjs",
+    "vendor_preact_hooks": "cp node_modules/preact/hooks/dist/hooks.mjs public/vendor/preact/hooks.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "htm": "^3.1.1",
+    "preact": "^10.16.0"
+  }
+}

@@ -1,90 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="app/app.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width">
-  <title>Password Generator</title>
-  <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css">
-  <link rel="stylesheet" href="app/app.css"></link>
-  <script type="text/javascript" src="vendor/jquery.min.js"></script>
-  <script type="text/javascript" src="vendor/angular.min.js"></script>
-  <script type="text/javascript" src="vendor/angular-animate.min.js"></script>
-  <script type="text/javascript" src="app/app.js"></script>
-</head>
+  <body></body>
+  <script type="importmap">
+    {
+      "imports": {
+        "htm": "./vendor/htm.mjs",
+        "preact": "./vendor/preact.mjs",
+        "preact/hooks": "./vendor/preact/hooks.mjs"
+      }
+    }
+  </script>
+  <script type="module">
+    import { renderApp } from "./app/app.mjs";
 
-<body data-ng-app="passwd" data-ng-controller="PasswordController as vm">
-  <main class="container">
-
-    <!-- Password field -->
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <input id="passwdField" class="form-control form-control-lg form-passwd" type="text" name="passwdField" data-ng-model="vm.passwdField"
-            placeholder="Password" aria-label="Password" data-passwd-select="vm.selectPasswd">
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <button class="btn btn-default btn-outline-primary btn-lg" type="button" name="passwdButton" data-ng-click="vm.generate()">
-            Generate
-          </button>
-          <button class="btn btn-outline-light btn-lg" ng-class="{'active': vm.showOptions}" type="button" data-ng-click="vm.showOptions = !vm.showOptions"
-            aria-expanded="false" aria-controls="collapseOptions">
-            More options
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- More options -->
-    <div class="row passwd-options-container" data-ng-show="vm.showOptions">
-      <div class="col">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="passwdLength">Characters</label>
-            </div>
-            <input type="number" min="0" max="256" class="form-control" name="passwdLength" data-ng-model="vm.options.passwdLength">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <label for="nUpper" class="input-group-text">Uppercase</label>
-            </div>
-            <input type="number" min="0" class="form-control" name="nUpper" data-ng-model="vm.options.nUpper">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <label for="nNumeric" class="input-group-text">Numeric</label>
-            </div>
-            <input type="number" min="0" class="form-control" name="nNumeric" data-ng-model="vm.options.nNumeric">
-          </div>
-        </div>
-
-        <div class="form-group passwd-special-group">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <label class="input-group-text">Special</label>
-            </div>
-            <input type="number" min="0" class="form-control" data-ng-model="vm.options.nSpecial">
-          </div>
-          <textarea type="text" class="form-control" data-ng-model="vm.options.specialCharset"></textarea>
-        </div>
-      </div>
-    </div>
-
-  </main>
-</body>
-
+    renderApp(document.body);
+  </script>
 </html>
