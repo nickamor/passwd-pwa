@@ -38,7 +38,7 @@ const App = () => {
   const [state, dispatch] = useReducer(rootReducer, initialState);
   const inputRef = useSelectInputEffect([state.password]);
 
-  return html`<main class="container">
+  return html`<main class="px-4">
     <${PasswordInput} passwdField=${state.password} inputRef=${inputRef} />
     <${PasswordControls}
       showOptions=${state.showOptions}
@@ -49,14 +49,14 @@ const App = () => {
         dispatch(toggleOptions());
       }}
     />
-    <${Collapse} className="passwd-options-container" open=${state.showOptions}>
+    <${Collapse} open=${state.showOptions}>
       <${PasswordOptions}
         options=${state.options}
         onChange=${(payload) => {
           dispatch(changeOption(payload));
         }}
       />
-    </Optional>
+    </Collapse>
   </main>`;
 };
 

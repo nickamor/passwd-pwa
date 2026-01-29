@@ -10,28 +10,41 @@ const changeEvent = (event) => {
   return event.target.value;
 };
 
-const InputLabel = ({ children, ...props }) => html`
-  <div class="input-group-prepend">
-    <label class="input-group-text" ...${props}>${children}</label>
-  </div>
+const InputLabel = ({ children, class: className = "", ...props }) => html`
+  <label
+    class="flex items-center justify-center min-w-[8rem] px-3 py-2 bg-surface border border-border border-r-0 rounded-l-lg text-text-muted text-sm ${className}"
+    ...${props}
+  >
+    ${children}
+  </label>
 `;
 
-const Input = ({ name, label, type, group = true, onChange, ...props }) => {
-  const Field = () => html`<div class="input-group">
-    ${label && html`<${InputLabel} for=${name}>${label}</Label>`}
+const Input = ({
+  name,
+  label,
+  type,
+  group = true,
+  inputClass = "",
+  labelClass = "",
+  onChange,
+  ...props
+}) => {
+  const baseInputClass = `flex-1 px-3 py-2 bg-surface border border-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${label ? "rounded-r-lg" : "rounded-lg"}`;
+
+  const Field = () => html`<div class="flex">
+    ${label &&
+    html`<${InputLabel} for=${name} class=${labelClass}>${label}</InputLabel>`}
     <input
       id=${name}
       type=${type}
-      class="form-control"
+      class="${baseInputClass} ${inputClass}"
       name=${name}
       onBlur=${(event) => onChange(changeEvent(event))}
       ...${props}
     />
   </div>`;
 
-  return group
-    ? html`<div class="form-group"><${Field} /></div>`
-    : html`<${Field} />`;
+  return group ? html`<div class="mb-3"><${Field} /></div>` : html`<${Field} />`;
 };
 
 export default Input;

@@ -28,7 +28,8 @@ const PasswordOptions = ({ options, onChange }) => {
     <textarea
       id="specialCharset"
       type="text"
-      class="form-control"
+      class="w-full px-3 py-2 bg-surface border border-border border-t-0 rounded-b-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+      rows="2"
       value=${options.specialCharset}
       onBlur=${(event) =>
         onChange(changeEvent("specialCharset", event.target.value))}
@@ -37,7 +38,7 @@ const PasswordOptions = ({ options, onChange }) => {
   const nLower =
     options.passwdLength - options.nUpper - options.nNumeric - options.nSpecial;
 
-  return html`<div class="col">
+  return html`<div>
     <${Field} name="passwdLength" label="Length" max="256" />
     <${Field}
       name="nUpper"
@@ -49,12 +50,14 @@ const PasswordOptions = ({ options, onChange }) => {
       label="Numbers"
       max=${limit(nLower + options.nNumeric)}
     />
-    <div class="form-group passwd-special-group">
+    <div class="mb-3">
       <${Field}
         name="nSpecial"
         label="Special"
         max=${limit(nLower + options.nSpecial)}
         group=${false}
+        inputClass="rounded-br-none"
+        labelClass="rounded-bl-none"
       />
       <${SpecialCharset} chars=${options.specialCharset} />
     </div>
