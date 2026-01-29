@@ -24,12 +24,14 @@ const useTransition = (value, timeout) => {
   return [animating];
 };
 
-export const Collapse = ({ className, open, children }) => {
+export const Collapse = ({ className = "", open, children }) => {
   const [animating] = useTransition(open, 200);
 
   const renderChildren = animating || open;
 
-  return html`<div class="row ${className} ${!open ? "hide" : "show"}">
+  return html`<div
+    class="${className} ${open ? "animate-collapse-in" : "animate-collapse-out"}"
+  >
     ${renderChildren && children}
   </div>`;
 };
