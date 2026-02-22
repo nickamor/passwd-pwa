@@ -1,1 +1,6 @@
 node_modules
+
+# Build outputs (source is in src/)
+public/app.js
+public/sw.js
+public/api/

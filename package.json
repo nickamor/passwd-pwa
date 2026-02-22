@@ -4,18 +4,20 @@
   "description": "A web-based password manager.",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:vendor && npm run build:css",
-    "build:vendor": "npm run vendor_htm && npm run vendor_preact && npm run vendor_preact_hooks",
+    "build": "npm run build:icons && npm run build:js && npm run build:js:sw && npm run build:css",
+    "build:icons": "npm run build:icon:192 && npm run build:icon:512",
+    "build:icon:192": "magick -size 192x192 canvas:'#252831' \\( -density 2400 -background none icon.svg -resize 144x144 \\) -gravity center -composite public/icon-192.png",
+    "build:icon:512": "magick -size 512x512 canvas:'#252831' \\( -density 2400 -background none icon.svg -resize 384x384 \\) -gravity center -composite public/icon-512.png",
+    "build:js": "bun build ./src/app/app.ts --target browser --outdir ./public --format esm",
+    "build:js:sw": "bun build ./src/sw/sw.ts --target browser --outdir ./public --format esm",
     "build:css": "npx tailwindcss -i src/app.css -o public/app/app.css --minify",
     "dev:css": "npx tailwindcss -i src/app.css -o public/app/app.css --watch",
-    "vendor_htm": "cp node_modules/htm/dist/htm.mjs public/vendor/htm.mjs",
-    "vendor_preact": "cp node_modules/preact/dist/preact.mjs public/vendor/preact.mjs",
-    "vendor_preact_hooks": "cp node_modules/preact/hooks/dist/hooks.mjs public/vendor/preact/hooks.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
     "htm": "^3.1.1",
     "preact": "^10.28.2"
   },

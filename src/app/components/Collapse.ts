@@ -24,7 +24,7 @@ const useTransition = (value, timeout) => {
   return [animating];
 };
 
-export const Collapse = ({ className = "", open, children }) => {
+const Collapse = ({ className = "", open, children }) => {
   const [animating] = useTransition(open, 200);
 
   const renderChildren = animating || open;
@@ -35,3 +35,5 @@ export const Collapse = ({ className = "", open, children }) => {
     ${renderChildren && children}
   </div>`;
 };
+
+export default Collapse;

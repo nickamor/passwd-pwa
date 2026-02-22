@@ -45,11 +45,11 @@ export const passwd = ({
   shuffleStr(
     pickMany(
       "abcdefghijklnopqrstuvwxyz",
-      passwdLength - nUpper - nNumeric - nSpecial
+      passwdLength - nUpper - nNumeric - nSpecial,
     ) +
       pickMany("ABCDEFGHIJKLMNOPQRSTUVWXYZ", nUpper) +
       pickMany("0123456789", nNumeric) +
-      pickMany(specialCharset, nSpecial)
+      pickMany(specialCharset, nSpecial),
   );
 
 window["passwd"] = passwd;

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Scan source files for classes */
-@source "../public/app/**/*.mjs";
+@source "../src/app/**/*.ts";
 
 /* Custom theme configuration */
 @theme {

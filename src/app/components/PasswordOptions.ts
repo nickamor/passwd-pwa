@@ -1,7 +1,7 @@
 import htm from "htm";
 import { createElement as h } from "preact";
 
-import Input from "./Input.mjs";
+import Input from "./Input";
 
 const html = htm.bind(h);
 
