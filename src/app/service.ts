@@ -1,6 +1,7 @@
 export const registerServiceWorker = () => {
   if (!navigator.serviceWorker) {
-    throw new Error("Service Workers unsupported");
+    console.warn("Service Workers unsupported");
+    return Promise.reject("Service Workers unsupported");
   }
 
   return navigator.serviceWorker
