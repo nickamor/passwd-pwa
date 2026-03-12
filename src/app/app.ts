@@ -8,10 +8,12 @@ const html = htm.bind(h);
 
 export const renderApp = (target) => {
   render(html`<${App} />`, target);
-  store.dispatch({ type: "init" });
 };
 
 renderApp(document.body);
-registerServiceWorker();
+
+registerServiceWorker()
+  .then(() => store.dispatch({ type: "init" }))
+  .catch(() => store.dispatch({ type: "init" }));
 
 export { registerServiceWorker };
